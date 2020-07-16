@@ -1,9 +1,9 @@
 # Very short description of the package
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/michaelr0/laravelactionsandfilters.svg?style=flat-square)](https://packagist.org/packages/michaelr0/laravelactionsandfilters)
-[![Build Status](https://img.shields.io/travis/michaelr0/laravelactionsandfilters/master.svg?style=flat-square)](https://travis-ci.org/michaelr0/laravelactionsandfilters)
-[![Quality Score](https://img.shields.io/scrutinizer/g/michaelr0/laravelactionsandfilters.svg?style=flat-square)](https://scrutinizer-ci.com/g/michaelr0/laravelactionsandfilters)
-[![Total Downloads](https://img.shields.io/packagist/dt/michaelr0/laravelactionsandfilters.svg?style=flat-square)](https://packagist.org/packages/michaelr0/laravelactionsandfilters)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/michaelr0/actions-filters.svg?style=flat-square)](https://packagist.org/packages/michaelr0/actions-filters)
+[![Build Status](https://img.shields.io/travis/michaelr0/actions-filters/master.svg?style=flat-square)](https://travis-ci.org/michaelr0/actions-filters)
+[![Quality Score](https://img.shields.io/scrutinizer/g/michaelr0/actions-filters.svg?style=flat-square)](https://scrutinizer-ci.com/g/michaelr0/actions-filters)
+[![Total Downloads](https://img.shields.io/packagist/dt/michaelr0/actions-filters.svg?style=flat-square)](https://packagist.org/packages/michaelr0/actions-filters)
 
 This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
 
@@ -12,7 +12,7 @@ This is where your description should go. Try and limit it to a paragraph or two
 You can install the package via composer:
 
 ```bash
-composer require michaelr0/laravelactionsandfilters
+composer require michaelr0/actions-filters
 ```
 
 ## Usage

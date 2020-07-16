@@ -1,11 +1,12 @@
 {
-    "name": "michaelr0/laravelactionsandfilters",
+    "name": "michaelr0/actionsandfilters",
     "description": "",
     "keywords": [
         "michaelr0",
-        "laravelactionsandfilters"
+        "actions",
+        "filters"
     ],
-    "homepage": "https://github.com/michaelr0/laravelactionsandfilters",
+    "homepage": "https://github.com/michaelr0/actionsandfilters",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -16,8 +17,8 @@
         }
     ],
     "require": {
-        "php": "^7.1",
-        "illuminate/support": "^6.0"
+        "php": "^7.2",
+        "illuminate/support": "^6.0|^7.0"
     },
     "require-dev": {
         "orchestra/testbench": "^4.0",
@@ -25,12 +26,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Michaelr0\\LaravelActionsAndFilters\\": "src"
+            "Michaelr0\\ActionsAndFilters\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Michaelr0\\LaravelActionsAndFilters\\Tests\\": "tests"
+            "Michaelr0\\ActionsAndFilters\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -44,10 +45,11 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Michaelr0\\LaravelActionsAndFilters\\LaravelActionsAndFiltersServiceProvider"
+                "Michaelr0\\ActionsAndFilters\\ActionsAndFiltersServiceProvider"
             ],
             "aliases": {
-                "LaravelActionsAndFilters": "Michaelr0\\LaravelActionsAndFilters\\LaravelActionsAndFiltersFacade"
+                "Action": "Michaelr0\\ActionsAndFilters\\Facades\\Action",
+                "Filter": "Michaelr0\\ActionsAndFilters\\Facades\\Filter"
             }
         }
     }
