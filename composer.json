@@ -1,0 +1,54 @@
+{
+    "name": "michaelr0/laravelactionsandfilters",
+    "description": "",
+    "keywords": [
+        "michaelr0",
+        "laravelactionsandfilters"
+    ],
+    "homepage": "https://github.com/michaelr0/laravelactionsandfilters",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Michael Rook",
+            "email": "michael@rook.net.au",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "^6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Michaelr0\\LaravelActionsAndFilters\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Michaelr0\\LaravelActionsAndFilters\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Michaelr0\\LaravelActionsAndFilters\\LaravelActionsAndFiltersServiceProvider"
+            ],
+            "aliases": {
+                "LaravelActionsAndFilters": "Michaelr0\\LaravelActionsAndFilters\\LaravelActionsAndFiltersFacade"
+            }
+        }
+    }
+}
