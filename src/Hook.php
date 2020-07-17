@@ -70,8 +70,7 @@ class Hook
     public function remove(string $hook, callable $callback, int $priority = 10, int $arguments = 1)
     {
         if (! empty($this->listeners[$hook][$priority])) {
-            $listeners = $this->listeners[$hook][$priority];
-            foreach ($listeners as $key => $value) {
+            foreach ($this->listeners[$hook][$priority] as $key => $value) {
                 if ($value['callback'] === $callback && $value['arguments'] === $arguments) {
                     unset($this->listeners[$hook][$priority][$key]);
                     break;
