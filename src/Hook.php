@@ -110,5 +110,4 @@ class Hook
 
         return $this;
     }
-
 }
