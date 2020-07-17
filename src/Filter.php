@@ -3,6 +3,7 @@
 namespace Michaelr0\ActionsAndFilters;
 
 class Filter extends Hook {
+
     public function run(string $hook, ...$args)
     {
         $value = $args[0] ?? null;
@@ -28,4 +29,5 @@ class Filter extends Hook {
 
         return $value;
     }
+
 }
