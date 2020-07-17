@@ -1,12 +1,12 @@
 {
-    "name": "michaelr0/actionsandfilters",
+    "name": "michaelr0/actions-filters",
     "description": "",
     "keywords": [
         "michaelr0",
         "actions",
         "filters"
     ],
-    "homepage": "https://github.com/michaelr0/actionsandfilters",
+    "homepage": "https://github.com/michaelr0/actions-filters",
     "license": "MIT",
     "type": "library",
     "authors": [
