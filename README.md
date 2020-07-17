@@ -2,6 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/michaelr0/actions-filters.svg?style=flat-square)](https://packagist.org/packages/michaelr0/actions-filters)
 [![Build Status](https://img.shields.io/travis/michaelr0/actions-filters/master.svg?style=flat-square)](https://travis-ci.org/michaelr0/actions-filters)
+[![StyleCI](https://github.styleci.io/repos/280111623/shield?branch=master)](https://github.styleci.io/repos/280111623?branch=master)
 [![Quality Score](https://img.shields.io/scrutinizer/g/michaelr0/actions-filters.svg?style=flat-square)](https://scrutinizer-ci.com/g/michaelr0/actions-filters)
 [![Total Downloads](https://img.shields.io/packagist/dt/michaelr0/actions-filters.svg?style=flat-square)](https://packagist.org/packages/michaelr0/actions-filters)
 
