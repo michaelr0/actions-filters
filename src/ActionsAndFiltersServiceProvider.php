@@ -12,6 +12,12 @@ class ActionsAndFiltersServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__ . '/../config/config.php' => config_path('actionsandfilters.php'),
+            ], 'config');
+        }
+
         if(function_exists('config') && config('actions-filters.enable_blade')){
             Blade::directive('action', function ($expression) {
                 return "<?php Action::run({$expression}); ?>";
