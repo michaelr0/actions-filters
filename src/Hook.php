@@ -6,10 +6,11 @@ class Hook
 {
     protected $listeners = [];
 
-    public function add(string $hook, callable $callback, int $priority = 10, int $arguments = 1){
+    public function add(string $hook, callable $callback, int $priority = 10, int $arguments = 1)
+    {
         $this->listeners[$hook][$priority][] = [
             'callback' => $callback,
-            'arguments' => $arguments
+            'arguments' => $arguments,
         ];
 
         return $this;
@@ -17,7 +18,7 @@ class Hook
 
     public function existsFor(string $hook)
     {
-        if (!empty($this->listeners[$hook])) {
+        if (! empty($this->listeners[$hook])) {
             return true;
         }
 
@@ -41,36 +42,37 @@ class Hook
 
     public function existsForPriority(string $hook, int $priority)
     {
-        if (!empty($this->listeners[$hook][$priority])) {
+        if (! empty($this->listeners[$hook][$priority])) {
             return true;
         }
 
         return false;
     }
 
-    public function list(string $hook = null, int $priority = null){
-        if(is_null($hook)){
+    public function list(string $hook = null, int $priority = null)
+    {
+        if (is_null($hook)) {
             return $this->listeners;
-        }elseif(!empty($this->listeners[$hook])){
-            if(!is_null($priority) && !empty($this->listeners[$hook][$priority])){
+        } elseif (! empty($this->listeners[$hook])) {
+            if (! is_null($priority) && ! empty($this->listeners[$hook][$priority])) {
                 return $this->listeners[$hook][$priority];
             }
 
             return $this->listeners[$hook];
         }
-
-        return null;
     }
 
-    public function listAll(){
+    public function listAll()
+    {
         return $this->list(null);
     }
 
-    public function remove(string $hook, callable $callback, int $priority = 10, int $arguments = 1){
-        if(!empty($this->listeners[$hook][$priority])){
+    public function remove(string $hook, callable $callback, int $priority = 10, int $arguments = 1)
+    {
+        if (! empty($this->listeners[$hook][$priority])){
             $listeners = $this->listeners[$hook][$priority];
-            foreach($listeners as $key => $value){
-                if($value['callback'] === $callback && $value['arguments'] === $arguments){
+            foreach ($listeners as $key => $value) {
+                if ($value['callback'] === $callback && $value['arguments'] === $arguments) {
                     unset($this->listeners[$hook][$priority][$key]);
                     break;
                 }
@@ -80,7 +82,8 @@ class Hook
         return $this;
     }
 
-    public function removeAllFor(string $hook){
+    public function removeAllFor(string $hook)
+    {
         unset($this->listeners[$hook]);
 
         return $this;
@@ -88,7 +91,7 @@ class Hook
 
     public function run(string $hook, ...$args)
     {
-        if (!empty($this->listeners)) {
+        if (! empty($this->listeners)) {
             $argsCount = count($args);
 
             foreach ($this->listeners[$hook] as $priority) {

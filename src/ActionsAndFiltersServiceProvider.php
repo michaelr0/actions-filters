@@ -4,8 +4,6 @@ namespace Michaelr0\ActionsAndFilters;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Michaelr0\ActionsAndFilters\Action;
-use Michaelr0\ActionsAndFilters\Filter;
 
 class ActionsAndFiltersServiceProvider extends ServiceProvider
 {

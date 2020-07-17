@@ -3,12 +3,11 @@
 namespace Michaelr0\ActionsAndFilters\Tests;
 
 use Orchestra\Testbench\TestCase;
-use Michaelr0\ActionsAndFilters\ActionsAndFiltersServiceProvider;
 use Michaelr0\ActionsAndFilters\Facades\Action;
+use Michaelr0\ActionsAndFilters\ActionsAndFiltersServiceProvider;
 
 class ActionTest extends TestCase
 {
-
     protected function getPackageProviders($app)
     {
         return [ActionsAndFiltersServiceProvider::class];

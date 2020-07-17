@@ -3,12 +3,11 @@
 namespace Michaelr0\ActionsAndFilters\Tests;
 
 use Orchestra\Testbench\TestCase;
-use Michaelr0\ActionsAndFilters\ActionsAndFiltersServiceProvider;
 use Michaelr0\ActionsAndFilters\Facades\Filter;
+use Michaelr0\ActionsAndFilters\ActionsAndFiltersServiceProvider;
 
 class FilterTest extends TestCase
 {
-
     protected function getPackageProviders($app)
     {
         return [ActionsAndFiltersServiceProvider::class];
@@ -36,6 +35,5 @@ class FilterTest extends TestCase
 
         $this->assertNull(Filter::list('Test'));
         // //** Remove Filters from list and test if it worked ** //
-
     }
 }

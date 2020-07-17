@@ -2,13 +2,13 @@
 
 namespace Michaelr0\ActionsAndFilters;
 
-class Filter extends Hook {
-
+class Filter extends Hook
+{
     public function run(string $hook, ...$args)
     {
         $value = $args[0] ?? null;
 
-        if (!empty($this->listeners)) {
+        if (! empty($this->listeners)) {
             $argsCount = count($args);
 
             foreach ($this->listeners[$hook] as $priority) {
@@ -29,5 +29,4 @@ class Filter extends Hook {
 
         return $value;
     }
-
 }

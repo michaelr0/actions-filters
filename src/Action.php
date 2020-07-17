@@ -2,4 +2,6 @@
 
 namespace Michaelr0\ActionsAndFilters;
 
-class Action extends Hook {}
+class Action extends Hook
+{
+}
