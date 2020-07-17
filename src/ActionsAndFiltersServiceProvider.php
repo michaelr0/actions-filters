@@ -14,11 +14,11 @@ class ActionsAndFiltersServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/config.php' => config_path('actionsandfilters.php'),
+                __DIR__.'/../config/config.php' => config_path('actionsandfilters.php'),
             ], 'config');
         }
 
-        if(function_exists('config') && config('actions-filters.enable_blade')){
+        if (function_exists('config') && config('actions-filters.enable_blade')) {
             Blade::directive('action', function ($expression) {
                 return "<?php Action::run({$expression}); ?>";
             });
@@ -35,7 +35,7 @@ class ActionsAndFiltersServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'actions-filters');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'actions-filters');
 
         // Register the Action class to use with the Action facade
         $this->app->singleton('action', function () {
