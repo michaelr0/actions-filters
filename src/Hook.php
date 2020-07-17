@@ -91,7 +91,7 @@ class Hook
 
     public function run(string $hook, ...$args)
     {
-        if (! empty($this->listeners)) {
+        if (! empty($this->listeners[$hook])) {
             $argsCount = count($args);
 
             foreach ($this->listeners[$hook] as $priority) {
