@@ -37,14 +37,29 @@ class ActionTest extends TestCase
         $this->assertFalse($actionsWork);
         // //** Add Action and test if it worked ** //
 
-        // ** Check Actions list and confirm it exists ** //
-        $this->assertTrue(is_array(Action::list('Test')));
-        // //** Check Actions list and confirm it exists ** //
+        Action::add('Test', 'strtoupper');
 
-        // ** Remove Actions from list and test if it worked ** //
+        $this->assertTrue(Action::existsFor('Test'));
+        $this->assertTrue(Action::existsForCallback('Test', 'strtoupper'));
+        $this->assertTrue(Action::existsForPriority('Test', 10));
+
+        $this->assertTrue(is_array(Action::list()));
+        $this->assertTrue(is_array(Action::list('Test')));
+        $this->assertTrue(is_array(Action::list('Test', 10)));
+        $this->assertTrue(is_array(Action::listAll()));
+
+        $this->assertFalse(Action::existsFor('Should return false'));
+        $this->assertFalse(Action::existsForCallback('Test', 'strtolower'));
+        $this->assertFalse(Action::existsForCallback('Should return false', 'strtolower'));
+        $this->assertFalse(Action::existsForPriority('Should return false', 10));
+
+        $this->assertFalse(is_array(Action::list('Should return false')));
+        $this->assertFalse(is_array(Action::list('Should return false', 10)));
+
+        $this->assertFalse(is_array(Action::list('Test', 9)));
+
         Action::removeAllFor('Test');
 
         $this->assertNull(Action::list('Test'));
-        // //** Remove Actions from list and test if it worked ** //
     }
 }
