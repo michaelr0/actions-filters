@@ -15,6 +15,8 @@ You can install the package via composer:
 composer require michaelr0/actions-filters
 ```
 
+## Documentation in progress, will be added soon
+
 ## Usage
 
 ``` php
