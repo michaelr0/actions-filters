@@ -18,11 +18,13 @@ class ActionsAndFiltersServiceProvider extends ServiceProvider
             ], 'config');
         }
 
-        if (function_exists('config') && config('actions-filters.enable_blade')) {
+        if (function_exists('config') && config('actions-filters.blade.enable_action_directive')) {
             Blade::directive('action', function ($expression) {
                 return "<?php Action::run({$expression}); ?>";
             });
+        }
 
+        if (function_exists('config') && config('actions-filters.blade.enable_filter_directive')) {
             Blade::directive('filter', function ($expression) {
                 return "<?php echo Filter::run({$expression}); ?>";
             });
