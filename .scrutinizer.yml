@@ -17,3 +17,11 @@ checks:
         fix_identation_4spaces: true
         fix_doc_comments: true
 
+build:
+    nodes:
+        tests:
+            override:
+                - command: composer test
+                    coverage:
+                        file: build/logs/clover.xml
+                        format: clover
