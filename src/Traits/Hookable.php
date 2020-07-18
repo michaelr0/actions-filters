@@ -1,8 +1,8 @@
 <?php
 
-namespace Michaelr0\ActionsAndFilters;
+namespace Michaelr0\ActionsAndFilters\Traits;
 
-class Hook
+trait Hookable
 {
     protected $listeners = [];
 

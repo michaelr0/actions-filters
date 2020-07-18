@@ -2,8 +2,12 @@
 
 namespace Michaelr0\ActionsAndFilters;
 
-class Filter extends Hook
+use Michaelr0\ActionsAndFilters\Traits\Hookable;
+
+class Filter
 {
+    use Hookable;
+
     public function run(string $hook, ...$args)
     {
         $value = $args[0] ?? null;

@@ -2,6 +2,9 @@
 
 namespace Michaelr0\ActionsAndFilters;
 
-class Action extends Hook
+use Michaelr0\ActionsAndFilters\Traits\Hookable;
+
+class Action
 {
+    use Hookable;
 }
