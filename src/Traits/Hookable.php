@@ -54,12 +54,12 @@ trait Hookable
         if (is_null($hook)) {
             return $this->listeners;
         } elseif (! empty($this->listeners[$hook])) {
-            if (! is_null($priority)){
-                if(! empty($this->listeners[$hook][$priority])) {
+            if (! is_null($priority)) {
+                if (! empty($this->listeners[$hook][$priority])) {
                     return $this->listeners[$hook][$priority];
                 }
 
-                return null;
+                return;
             }
 
             return $this->listeners[$hook];
