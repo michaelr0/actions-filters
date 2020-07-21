@@ -4,7 +4,7 @@ namespace Michaelr0\ActionsAndFilters\Tests;
 
 use Orchestra\Testbench\TestCase;
 use Michaelr0\ActionsAndFilters\Facades\Filter;
-use Michaelr0\ActionsAndFilters\ActionsAndFiltersServiceProvider;
+use Michaelr0\ActionsAndFilters\Providers\ActionsAndFiltersServiceProvider;
 
 class FilterTest extends TestCase
 {
@@ -33,31 +33,29 @@ class FilterTest extends TestCase
         // ** Remove Filters from list and test if it worked ** //
         Filter::removeAllFor('Test');
 
-        $this->assertNull(Filter::list('Test'));
+        $this->assertEmpty(Filter::list('Test'));
         // //** Remove Filters from list and test if it worked ** //
 
         Filter::add('Test', 'strtoupper');
-        $this->assertTrue(Filter::existsFor('Test'));
+        $this->assertTrue(Filter::exists('Test'));
         $this->assertTrue(Filter::existsForCallback('Test', 'strtoupper'));
-        $this->assertTrue(Filter::existsForPriority('Test', 10));
 
-        $this->assertTrue(is_array(Filter::list()));
-        $this->assertTrue(is_array(Filter::list('Test')));
-        $this->assertTrue(is_array(Filter::list('Test', 10)));
-        $this->assertTrue(is_array(Filter::listAll()));
+        $this->assertNotEmpty(Filter::list());
+        $this->assertNotEmpty(Filter::list('Test'));
+        $this->assertNotEmpty(Filter::list('Test', 10));
+        $this->assertNotEmpty(Filter::listAll());
 
-        $this->assertFalse(Filter::existsFor('Should return false'));
+        $this->assertFalse(Filter::exists('Should return false'));
         $this->assertFalse(Filter::existsForCallback('Test', 'strtolower'));
         $this->assertFalse(Filter::existsForCallback('Should return false', 'strtolower'));
-        $this->assertFalse(Filter::existsForPriority('Should return false', 10));
 
-        $this->assertFalse(is_array(Filter::list('Should return false')));
-        $this->assertFalse(is_array(Filter::list('Should return false', 10)));
+        $this->assertEmpty(Filter::list('Should return empty'));
+        $this->assertEmpty(Filter::list('Should return empty', 10));
 
-        $this->assertFalse(is_array(Filter::list('Test', 9)));
+        $this->assertEmpty(Filter::list('Test', 9));
 
         Filter::removeAllFor('Test');
 
-        $this->assertNull(Filter::list('Test'));
+        $this->assertEmpty(Filter::list('Test'));
     }
 }

@@ -4,7 +4,7 @@ namespace Michaelr0\ActionsAndFilters\Tests;
 
 use Orchestra\Testbench\TestCase;
 use Michaelr0\ActionsAndFilters\Facades\Action;
-use Michaelr0\ActionsAndFilters\ActionsAndFiltersServiceProvider;
+use Michaelr0\ActionsAndFilters\Providers\ActionsAndFiltersServiceProvider;
 
 class ActionTest extends TestCase
 {
@@ -39,27 +39,25 @@ class ActionTest extends TestCase
 
         Action::add('Test', 'strtoupper');
 
-        $this->assertTrue(Action::existsFor('Test'));
+        $this->assertTrue(Action::exists('Test'));
         $this->assertTrue(Action::existsForCallback('Test', 'strtoupper'));
-        $this->assertTrue(Action::existsForPriority('Test', 10));
 
-        $this->assertTrue(is_array(Action::list()));
-        $this->assertTrue(is_array(Action::list('Test')));
-        $this->assertTrue(is_array(Action::list('Test', 10)));
-        $this->assertTrue(is_array(Action::listAll()));
+        $this->assertNotEmpty(Action::list());
+        $this->assertNotEmpty(Action::list('Test'));
+        $this->assertNotEmpty(Action::list('Test', 10));
+        $this->assertNotEmpty(Action::listAll());
 
-        $this->assertFalse(Action::existsFor('Should return false'));
+        $this->assertFalse(Action::exists('Should return false'));
         $this->assertFalse(Action::existsForCallback('Test', 'strtolower'));
         $this->assertFalse(Action::existsForCallback('Should return false', 'strtolower'));
-        $this->assertFalse(Action::existsForPriority('Should return false', 10));
 
-        $this->assertFalse(is_array(Action::list('Should return false')));
-        $this->assertFalse(is_array(Action::list('Should return false', 10)));
+        $this->assertEmpty(Action::list('Should return empty'));
+        $this->assertEmpty(Action::list('Should return empty', 10));
 
-        $this->assertFalse(is_array(Action::list('Test', 9)));
+        $this->assertEmpty(Action::list('Test', 9));
 
         Action::removeAllFor('Test');
 
-        $this->assertNull(Action::list('Test'));
+        $this->assertEmpty(Action::list('Test'));
     }
 }

@@ -16,12 +16,50 @@ You can install the package via composer:
 composer require michaelr0/actions-filters
 ```
 
-## Documentation in progress, will be added soon
+## [Documentation/Wiki](https://github.com/michaelr0/actions-filters/wiki)
 
 ## Usage
 
+### With Laravel
 ``` php
-// Usage description here
+
+// Filter Example
+
+// Add a filter callback to a function by name
+Filter::add('Test', 'ucfirst');
+
+// Add a filter callback to a closure function
+Filter::add('Test', function($value){
+    return "{$value} {$value}";
+});
+
+// Will return Foobar Foobar
+Filter::run('Test', 'foobar');
+
+// /Filter Example
+
+// Action Example
+
+// Eample function for test
+function action_test($value){
+    DB::table('users')->where('name', $value)->delete();
+}
+
+// Add a action callback to a function by name
+Action::add('DeleteUser', 'action_test');
+// Or
+
+// Add a action callback to a closure function
+Action::add('DeleteUser', function($value){
+    action_test($value);
+    // Or this closure function could just do DB::table('users')->where('name', $value)->delete();
+});
+
+// Execute the action, which in this example will find/delete a user named foobar
+Action::run('DeleteUser', 'foobar');
+
+// /Action Example
+
 ```
 
 ### Testing
@@ -50,7 +88,3 @@ If you discover any security related issues, please email michael@rook.net.au in
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
-## Laravel Package Boilerplate
-
-This package was generated using the [Laravel Package Boilerplate](https://laravelpackageboilerplate.com).

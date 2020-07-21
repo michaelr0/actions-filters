@@ -16,7 +16,7 @@ trait Hookable
         return $this;
     }
 
-    public function existsFor(string $hook)
+    public function exists(string $hook): bool
     {
         if (! empty($this->listeners[$hook])) {
             return true;
@@ -25,9 +25,9 @@ trait Hookable
         return false;
     }
 
-    public function existsForCallback(string $hook, callable $callback)
+    public function existsForCallback(string $hook, callable $callback): bool
     {
-        if ($this->existsFor($hook)) {
+        if ($this->exists($hook)) {
             foreach ($this->listeners[$hook] as $priority) {
                 foreach ($priority as $listener) {
                     if ($listener['callback'] === $callback) {
@@ -40,16 +40,7 @@ trait Hookable
         return false;
     }
 
-    public function existsForPriority(string $hook, int $priority)
-    {
-        if (! empty($this->listeners[$hook][$priority])) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public function list(string $hook = null, int $priority = null)
+    public function list(string $hook = null, int $priority = null): array
     {
         if (is_null($hook)) {
             return $this->listeners;
@@ -59,14 +50,16 @@ trait Hookable
                     return $this->listeners[$hook][$priority];
                 }
 
-                return;
+                return [];
             }
 
             return $this->listeners[$hook];
         }
+
+        return [];
     }
 
-    public function listAll()
+    public function listAll(): array
     {
         return $this->list(null);
     }
