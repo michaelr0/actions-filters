@@ -50,11 +50,11 @@ class FilterTest extends TestCase
 
         Filter::removeAllFor('test');
 
-        Filter::add('test', function() {
-            return "foobar";
+        Filter::add('test', function () {
+            return 'foobar';
         }, 10, 0);
         Filter::add('test', 'strtoupper', 10, 1);
-        Filter::add('test', function(...$args) {
+        Filter::add('test', function (...$args) {
             return "{$args[0]} {$args[0]}";
         }, 10, 2);
 
