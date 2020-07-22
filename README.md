@@ -21,9 +21,9 @@ composer require michaelr0/actions-filters
 ## Usage
 
 ### With Laravel
-``` php
 
-// Filter Example
+#### Filter Examples
+``` php
 
 // Add a filter callback to a function by name
 Filter::add('Test', 'ucfirst');
@@ -36,9 +36,10 @@ Filter::add('Test', function($value){
 // Will return Foobar Foobar
 Filter::run('Test', 'foobar');
 
-// /Filter Example
+```
 
-// Action Example
+#### Action Examples
+``` php
 
 // Eample function for test
 function action_test($value){
@@ -57,8 +58,6 @@ Action::add('DeleteUser', function($value){
 
 // Execute the action, which in this example will find/delete a user named foobar
 Action::run('DeleteUser', 'foobar');
-
-// /Action Example
 
 ```
 
