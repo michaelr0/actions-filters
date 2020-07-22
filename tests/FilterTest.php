@@ -56,7 +56,7 @@ class FilterTest extends TestCase
         Filter::add('test', 'strtoupper', 10, 1);
         Filter::add('test', function (...$args) {
             return "{$args[0]} {$args[0]}";
-        }, 10, 2);
+        }, 10, 3);
 
         $this->assertTrue(Filter::run('test', null, null, null) === 'FOOBAR FOOBAR');
     }
