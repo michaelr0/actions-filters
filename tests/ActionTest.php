@@ -2,6 +2,7 @@
 
 namespace Michaelr0\ActionsAndFilters\Tests;
 
+use Michaelr0\ActionsAndFilters\Action as ActionClass;
 use Orchestra\Testbench\TestCase;
 use Michaelr0\ActionsAndFilters\Facades\Action;
 use Michaelr0\ActionsAndFilters\Providers\ActionsAndFiltersServiceProvider;
@@ -16,48 +17,53 @@ class ActionTest extends TestCase
     /** @test */
     public function actionsWork()
     {
-        // ** Add Action and test if it worked ** //
-        $actionsWork = false;
-        Action::add('Test', function () use (&$actionsWork) {
-            $actionsWork = true;
-        });
+        $action = Action::add('test', function () {}, 10, 0);
+        $this->assertTrue($action instanceof ActionClass);
 
-        Action::run('Test');
+        Action::add('test', 'array_merge', 10, 2);
 
-        $this->assertTrue($actionsWork);
-        // //** Add Action and test if it worked ** //
+        $this->assertTrue(Action::exists('test'));
+        $this->assertFalse(Action::exists('test2'));
 
-        // ** Add Action and test if it worked ** //
-        Action::add('Test', function () use (&$actionsWork) {
-            $actionsWork = false;
-        });
+        $this->assertTrue(Action::existsForCallback('test', 'array_merge'));
+        $this->assertFalse(Action::existsForCallback('test', 'strtoupper'));
+        $this->assertFalse(Action::existsForCallback('test2','strtoupper'));
 
-        Action::run('Test');
+        $this->assertNotEmpty(Action::list('test'));
+        $this->assertEmpty(Action::list('test2'));
+        $this->assertEmpty(Action::list('test', 9));
+        $this->assertNotEmpty(Action::list('test', 10));
+        $this->assertEmpty(Action::list('test2', 10));
 
-        $this->assertFalse($actionsWork);
-        // //** Add Action and test if it worked ** //
-
-        Action::add('Test', 'strtoupper');
-
-        $this->assertTrue(Action::exists('Test'));
-        $this->assertTrue(Action::existsForCallback('Test', 'strtoupper'));
-
-        $this->assertNotEmpty(Action::list());
-        $this->assertNotEmpty(Action::list('Test'));
-        $this->assertNotEmpty(Action::list('Test', 10));
         $this->assertNotEmpty(Action::listAll());
 
-        $this->assertFalse(Action::exists('Should return false'));
-        $this->assertFalse(Action::existsForCallback('Test', 'strtolower'));
-        $this->assertFalse(Action::existsForCallback('Should return false', 'strtolower'));
+        Action::remove('test', 'array_merge', 10, 3);
+        Action::remove('test', 'strtoupper', 10, 2);
+        Action::remove('test', 'array_merge', 9, 2);
+        $this->assertTrue(Action::remove('test', 'array_merge', 10, 2) instanceof ActionClass);
+        Action::remove('test', 'array_merge', 10, 2);
 
-        $this->assertEmpty(Action::list('Should return empty'));
-        $this->assertEmpty(Action::list('Should return empty', 10));
+        $this->assertTrue(Action::removeAllFor('test') instanceof ActionClass);
 
-        $this->assertEmpty(Action::list('Test', 9));
+        $this->assertEmpty(Action::list('test'));
 
-        Action::removeAllFor('Test');
+        $actionsWork = false;
+        Action::add('test', function () use (&$actionsWork) { $actionsWork = true; });
+        Action::run('test');
+        $this->assertTrue($actionsWork);
+        Action::add('test', function () use (&$actionsWork) { $actionsWork = false; });
+        Action::run('test');
+        $this->assertFalse($actionsWork);
 
-        $this->assertEmpty(Action::list('Test'));
+        Action::removeAllFor('test');
+
+        Action::add('test', 'array_merge', 10, 2);
+        $this->assertTrue(Action::run('test', [], []) instanceof ActionClass);
+
+        Action::run('test', [], [], []);
+
+        Action::removeAllFor('test');
+        Action::add('test', function () { return null; }, 10, 0);
+        Action::run('test');
     }
 }
