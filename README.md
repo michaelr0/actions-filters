@@ -6,6 +6,7 @@
 [![Code Coverage](https://scrutinizer-ci.com/g/michaelr0/actions-filters/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/michaelr0/actions-filters/?branch=master)
 
 Actions And Filters is an Action and Filter library inspired by WordPress Actions and Filters.
+This package can be used in Laravel and supports auto discovery, alternatively some Pseudo Facades have been made available to enable the package to be used in any PHP project.
 
 
 ## Installation
@@ -20,10 +21,60 @@ composer require michaelr0/actions-filters
 
 ## Usage
 
-### With Laravel
+### Without Laravel
+
+Some Pseudo Facades have been made available to enable the package to be used in any PHP project.
+Alternatively you can newup the classes directly.
+
+#### PseudoFacade Example
+``` php
+
+use Michaelr0\ActionsAndFilters\PseudoFacades\Filter;
+
+Filter::add('Test', 'ucfirst');
+echo Filter::run('Test', 'foobar');
+
+```
+
+#### Class Example
+``` php
+
+$filter = new Michaelr0\ActionsAndFilters\Filter;
+
+$filter->add('Test', 'ucfirst');
+echo $filter->run('Test', 'foobar');
+
+```
+
+#### Action Examples
+``` php
+
+use Michaelr0\ActionsAndFilters\PseudoFacades\Action;
+
+// Eample function for test
+function action_test($key){
+    unset($_GET[$key]);
+}
+
+// Add a action callback to a function by name
+Action::add('unset', 'action_test');
+// Or
+
+// Add a action callback to a closure function
+Action::add('unset', function($key){
+    action_test($key);
+    // Or this closure function could just do unset($_GET[$key]);
+});
+
+// Execute the action, which in this example will unset $_GET['foobar']
+Action::run('unset', 'foobar');
+
+```
 
 #### Filter Examples
 ``` php
+
+use Michaelr0\ActionsAndFilters\PseudoFacades\Filter;
 
 // Add a filter callback to a function by name
 Filter::add('Test', 'ucfirst');
@@ -37,6 +88,8 @@ Filter::add('Test', function($value){
 Filter::run('Test', 'foobar');
 
 ```
+
+### With Laravel
 
 #### Action Examples
 ``` php
@@ -58,6 +111,22 @@ Action::add('DeleteUser', function($value){
 
 // Execute the action, which in this example will find/delete a user named foobar
 Action::run('DeleteUser', 'foobar');
+
+```
+
+#### Filter Examples
+``` php
+
+// Add a filter callback to a function by name
+Filter::add('Test', 'ucfirst');
+
+// Add a filter callback to a closure function
+Filter::add('Test', function($value){
+    return "{$value} {$value}";
+});
+
+// Will return Foobar Foobar
+Filter::run('Test', 'foobar');
 
 ```
 
