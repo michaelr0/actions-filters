@@ -2,9 +2,8 @@
 
 namespace Michaelr0\ActionsAndFilters\Tests;
 
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\View;
 use Orchestra\Testbench\TestCase;
+use Illuminate\Support\Facades\Blade;
 use Michaelr0\ActionsAndFilters\Providers\ActionsAndFiltersServiceProvider;
 
 class ServiceProviderTest extends TestCase
