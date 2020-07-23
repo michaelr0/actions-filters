@@ -4,9 +4,9 @@ namespace Michaelr0\ActionsAndFilters\PseudoFacades;
 
 class Action
 {
-    private static $class;
+    protected static $class;
 
-    private static function class()
+    protected static function class()
     {
         if (empty(static::$class)) {
             static::$class = new \Michaelr0\ActionsAndFilters\Action;
