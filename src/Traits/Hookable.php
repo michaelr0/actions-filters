@@ -44,7 +44,6 @@ trait Hookable
             } elseif (! is_null($priority)) {
                 return [];
             }
-
         }
 
         return $this->listeners[$hook] ?? [];
